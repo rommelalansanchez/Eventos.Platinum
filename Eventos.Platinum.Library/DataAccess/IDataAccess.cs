@@ -1,4 +1,4 @@
-﻿namespace Eventos.Platinum.Library
+﻿namespace Eventos.Platinum.Library.DataAccess
 {
     public interface IDataAccess
     {

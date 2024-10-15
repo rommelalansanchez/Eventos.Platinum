@@ -1,5 +1,7 @@
 ﻿
-using Eventos.Platinum.API.Models;
+using Eventos.Platinum.Library.BusinessServices;
+using Eventos.Platinum.Library.Models;
+using Eventos.Platinum.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,9 +13,11 @@ namespace Eventos.Platinum.API.Controllers;
 [ApiController]
 public class UsuarioController : ControllerBase
 {
+    private readonly IUsuarioService _usuarioService;
 
-    public UsuarioController()
+    public UsuarioController(IUsuarioService usuarioService)
     {
+        _usuarioService = usuarioService;
     }
 
     [HttpGet]
@@ -61,14 +65,14 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] object item)
+    public async Task<IActionResult> Post([FromBody] Usuario item)
     {
         try
         {
-            await Task.FromResult(item);
+            await _usuarioService.SaveAsync(item);
             return StatusCode((int)HttpStatusCode.OK, new ServiceResponse<int>
             {
-                //Data = item.UsuarioId,
+                Data = item.UsuarioId,
                 Success = true
             });
         }
@@ -96,7 +100,8 @@ public class UsuarioController : ControllerBase
     {
         try
         {
-            await Task.FromResult(item);
+            await Task.FromResult(true);
+
             return StatusCode((int)HttpStatusCode.OK, new ServiceResponse<bool>
             {
                 Data = true,

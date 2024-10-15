@@ -1,4 +1,4 @@
-﻿namespace Eventos.Platinum.API.Models
+﻿namespace Eventos.Platinum.Shared.Models
 {
     public class ServiceResponse<T>
     {

@@ -1,5 +1,7 @@
 ﻿
-using Eventos.Platinum.API.Models;
+using Eventos.Platinum.Library.BusinessServices;
+using Eventos.Platinum.Library.Models;
+using Eventos.Platinum.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -7,13 +9,14 @@ using System.Net;
 namespace Eventos.Platinum.API.Controllers;
 
 [Route("api/[controller]")]
-//[ApiController, Authorize]
-[ApiController]
+[ApiController, Authorize]
 public class SalaController : ControllerBase
 {
+    private readonly ISalaService _salaService;
 
-    public SalaController()
+    public SalaController(ISalaService salaService)
     {
+        _salaService = salaService;
     }
 
     [HttpGet]
@@ -21,8 +24,8 @@ public class SalaController : ControllerBase
     {
         try
         {
-            var result = await Task.FromResult(new List<string> { "Sala 1", "Sala 2", "Sala 3" });
-            return StatusCode((int)HttpStatusCode.OK, new ServiceResponse<List<string>>
+            var result = await _salaService.GetSalas();
+            return StatusCode((int)HttpStatusCode.OK, new ServiceResponse<List<Sala>>
             {
                 Data = result,
                 Success = true

@@ -67,10 +67,13 @@
     <Build Include="dbo\Tables\UsuarioTipo.sql" />
     <Build Include="dbo\Tables\Sala.sql" />
     <Build Include="dbo\Tables\Reservacion.sql" />
+    <Build Include="dbo\StoredProcedures\spSalaGet.sql" />
+    <Build Include="dbo\StoredProcedures\spUsuarioGet.sql" />
+    <Build Include="dbo\StoredProcedures\spUsuarioInsert.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Scripts\InicializarDatos.sql" />
-    <None Include="PublishLocations\Eventos.Platinum.Data.Local.publish.publish.xml" />
+    <None Include="PublishLocations\Eventos.Platinum.Data.Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Eventos.Platinum.Data.refactorlog" />

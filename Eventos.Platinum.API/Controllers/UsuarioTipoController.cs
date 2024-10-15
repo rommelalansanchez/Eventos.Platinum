@@ -1,5 +1,5 @@
 ﻿
-using Eventos.Platinum.API.Models;
+using Eventos.Platinum.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -20,6 +20,7 @@ public class UsuarioTipoController : ControllerBase
     {
         try
         {
+            await Task.FromResult(true);
             return StatusCode((int)HttpStatusCode.OK, new ServiceResponse<List<object>>
             {
                 //Data = model.ToList(),
